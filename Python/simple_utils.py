@@ -12,6 +12,7 @@ def count_words(sentence):
         raise TypeError("Input must be a string")
     return len(sentence.split())
 
+
 def celsius_to_fahrenheit(celsius):
     """Converts temperature from Celsius to Fahrenheit."""
     if not isinstance(celsius, (int, float)):
