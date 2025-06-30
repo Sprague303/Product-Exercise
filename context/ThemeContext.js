@@ -11,9 +11,15 @@ export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState('light'); // Default theme
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem('theme');
-    if (storedTheme) {
-      setTheme(storedTheme);
+    try {
+      if (typeof window !== 'undefined') {
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme && (storedTheme === 'light' || storedTheme === 'dark')) {
+          setTheme(storedTheme);
+        }
+      }
+    } catch (error) {
+      console.warn('Failed to load theme from localStorage:', error);
     }
   }, []);
 
